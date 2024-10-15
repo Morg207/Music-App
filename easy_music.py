@@ -187,6 +187,7 @@ if __name__ == "__main__":
     volume_slider.set(10)
     volume_slider.pack(pady=(5,10))
     right_frame.pack(side=tk.LEFT,expand=True,fill="both",padx=(0,20),pady=(55,15))
+    window.resizable(False,False)
     window.mainloop()
     pygame.mixer.music.stop()
     pygame.mixer.music.unload()
