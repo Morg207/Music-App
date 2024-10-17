@@ -24,8 +24,7 @@ def load_songs():
         file_paths = os.listdir(music_path)
         for file_path in file_paths:
             if ".wav" not in file_path and ".mp3" not in file_path:
-                music_path = ""
-                return
+                continue
             playlist.insert(tk.END,file_path)
         playlist.select_set(0)
         first_item = playlist.get(0)
