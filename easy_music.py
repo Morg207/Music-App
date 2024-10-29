@@ -23,7 +23,8 @@ def load_songs():
         playlist.delete(0,tk.END)
         file_paths = os.listdir(music_path)
         for file_path in file_paths:
-            if ".wav" not in file_path and ".mp3" not in file_path:
+            desc = file_path[len(file_path)-4:]
+            if desc != ".wav" and desc != ".mp3":
                 continue
             playlist.insert(tk.END,file_path)
         playlist.select_set(0)
@@ -123,14 +124,17 @@ def on_mute():
         pygame.mixer.music.set_volume(0.0)
     else:
         mute_off_button.config(image=mute_off_button_image)
-        pygame.mixer.music.set_volume(1.0)
+        pygame.mixer.music.set_volume(track_volume)
 
 def on_volume_changed(scale_value):
+    global track_volume
     current_volume = float(scale_value) / 10.0
+    track_volume = current_volume
     pygame.mixer.music.set_volume(current_volume)
     
 if __name__ == "__main__":
     toggle_state = 1
+    track_volume = 1
     music_paused = False
     window = tk.Tk()
     window.title("EasyMusic!")
